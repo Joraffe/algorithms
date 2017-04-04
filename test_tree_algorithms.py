@@ -1,5 +1,6 @@
 import pytest
-from breadth_first_search import Tree
+from tree_algorithms import Tree
+
 
 @pytest.fixture
 def new_tree():
@@ -20,3 +21,14 @@ def test_breadth_first_search(new_tree):
   assert len(new_tree.breadth_first_search(3).children) == 2
   assert new_tree.breadth_first_search(7).value == 7
   assert len(new_tree.breadth_first_search(7).children) == 0
+
+
+def test_depth_first_search(new_tree):
+  assert new_tree.depth_first_search(2).value == 2
+  assert len(new_tree.depth_first_search(2).children) == 2
+
+  assert new_tree.depth_first_search(3).value == 3
+  assert len(new_tree.depth_first_search(3).children) == 2
+
+  assert new_tree.depth_first_search(7).value == 7
+  assert len(new_tree.depth_first_search(7).children) == 0
