@@ -1,7 +1,3 @@
-class TreeError(Exception):
-  pass
-
-
 class Tree:
   def __init__(self, value):
     self.value = value
@@ -14,19 +10,15 @@ class Tree:
     return str(self)
 
   def breadth_first_search(self, target):
-    visited = []
     q = Queue()
-    visited.append(self)
     q.enqueue(self)
 
     while q.size() > 0:
       cur = q.dequeue()
       if cur.value == target:
         return cur
-      for node in cur.children:
-        if node not in visited:
-          visited.append(node)
-          q.enqueue(node)
+      for child in cur.children:
+        q.enqueue(child)
 
     raise TreeError("Tree does not contain target value")
 
@@ -57,6 +49,10 @@ class Tree:
         self.children.remove(child)
       else:
         raise TreeError("Input node is not a child of this Tree")
+
+
+class TreeError(Exception):
+  pass
 
 
 # Other Data Structures used specifically for breadth_first_search:
